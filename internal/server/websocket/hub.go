@@ -48,8 +48,6 @@ func (h *Hub) Handle(w http.ResponseWriter, r *http.Request) {
 	client := NewClient(conn, uint(len(h.clients)+1), h.RemoveClient, h.infoLogger, h.errLogger)
 
 	h.gameManager.Join(client)
-
-	go client.Read()
 }
 
 func (h *Hub) registerClient(userID uint, client *Client) {
